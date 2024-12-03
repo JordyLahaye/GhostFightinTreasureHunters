@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhostFightinTreasureHunters", "GhostFightinTreasureHunters\GhostFightinTreasureHunters.csproj", "{56485D85-ADBE-4B34-84B9-081F6645AFD2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56485D85-ADBE-4B34-84B9-081F6645AFD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56485D85-ADBE-4B34-84B9-081F6645AFD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56485D85-ADBE-4B34-84B9-081F6645AFD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56485D85-ADBE-4B34-84B9-081F6645AFD2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7C652145-B941-452A-A413-468FBE284327}
+	EndGlobalSection
+EndGlobal
