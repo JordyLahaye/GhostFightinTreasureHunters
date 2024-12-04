@@ -2,7 +2,7 @@
 {
     internal class Program // Game
     {
-        private static List<Player> PlayerList = new List<Player>(); //Note: static is alleen aanroepbaar binnen de klasse Program
+        private static List<Player> Players = new List<Player>(); //Note: static is alleen aanroepbaar binnen de klasse Program
         static void Main(string[] args)
         {
 

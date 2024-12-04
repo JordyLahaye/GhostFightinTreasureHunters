@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GhostFightinTreasureHunters
 {
+        // Dobbelsteen class niet nodig
     public class Die
     {
         private List<Int32> DieMoveIndex = new List<Int32>() {1,2,3,4,5,6};
@@ -14,7 +15,6 @@ namespace GhostFightinTreasureHunters
         /*Random random = new Random();
         int randint = random.Next(0, 2);
         Console.WriteLine(randint);*/
-
 
 
 
