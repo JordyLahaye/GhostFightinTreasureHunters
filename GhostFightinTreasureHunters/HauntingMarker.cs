@@ -9,9 +9,11 @@ namespace GhostFightinTreasureHunters
     public class HauntingMarker : Pawn
     {
 
-        public HauntingMarker() : base("haunting marker")
+        public HauntingMarker() : base("haunting marker") //Create HauntingMarker
         {
 
         }
+
+        
     }
 }

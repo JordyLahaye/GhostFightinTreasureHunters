@@ -14,7 +14,7 @@ namespace GhostFightinTreasureHunters
 
         public bool IsCompleted { get; set; }
 
-        public List<Player> Players { get; set; } = new List<Player>(); 
+        public List<Player> Players { get; set; } = new List<Player>();
 
         public Game() // Nieuw spel, nadenken wanneer word een nieuwe game aangemaakt
         {
@@ -27,6 +27,22 @@ namespace GhostFightinTreasureHunters
         }
 
         public void StartGame()
+        {
+
+        }
+        //Create player in zelf
+
+        public void CheckVictory()
+        {
+
+        }
+
+        public void CheckDefeat()
+        {
+
+        }
+
+        public void SaveGame()
         {
 
         }

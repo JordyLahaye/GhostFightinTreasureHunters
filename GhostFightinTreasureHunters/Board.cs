@@ -9,6 +9,8 @@ namespace GhostFightinTreasureHunters
     public class Board
     {
 
+        public string TileIndexBoard { get; set; }
+        public int CountHauntingMarker { get; set; }
 
     }
 }

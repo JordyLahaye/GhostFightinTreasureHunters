@@ -9,6 +9,8 @@ namespace GhostFightinTreasureHunters
     public class Ghost : Pawn
     {
 
+        public int AmountOfGhostInRoom { get; set; }
+
         public Ghost() : base("ghost")
         {
 

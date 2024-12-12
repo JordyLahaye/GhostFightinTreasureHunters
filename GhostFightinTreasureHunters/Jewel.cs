@@ -8,5 +8,7 @@ namespace GhostFightinTreasureHunters
 {
     public class Jewel
     {
+
+        public int Position { get; set; }
     }
 }
