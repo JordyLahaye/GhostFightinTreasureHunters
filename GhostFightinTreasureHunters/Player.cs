@@ -16,7 +16,6 @@ namespace GhostFightinTreasureHunters
         {
             Name = name;
             ColorHunter = colorHunter;
-            Hunter hunter = new Hunter(colorHunter);
 
         }
 
