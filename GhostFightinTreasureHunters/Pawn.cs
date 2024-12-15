@@ -8,12 +8,12 @@ namespace GhostFightinTreasureHunters
 {
     public abstract class Pawn
     {
-        private string Name { get; set; }
+        private string Type { get; set; }
         private Dictionary<int,int> Position { get; set; }
 
-        public Pawn(string name)
+        public Pawn(string type)
         {
-            Name = name;
+            Type = type;
             //Position = new Dictionary<int,int>();
         }
     }

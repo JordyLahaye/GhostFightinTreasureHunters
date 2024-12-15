@@ -12,7 +12,9 @@ namespace GhostFightinTreasureHunters
         public string Name { get; set; }
         public string ColorHunter { get; set; }
         public bool HasJewel { get; set; }
-        public Player(string name, string colorHunter) //CreatePlayer
+
+        private List<string> cardDeck = new List<string>() {"a","b", "c", "d", "e", "f", "g", "h"}; // Bekijk kaartregels dit is een begin
+        public Player(string name, string colorHunter) : base("player") //CreatePlayer
         {
             Name = name;
             ColorHunter = colorHunter;
@@ -29,9 +31,15 @@ namespace GhostFightinTreasureHunters
             //Logic
         }
 
-        public void DrawCard()
+        public string DrawCard()
         {
-            //Logic
+            Random random = new Random();
+            int lenghtList = cardDeck.Count;
+            int randint = random.Next(0, lenghtList+1); //Deck van de kaarten
+            string drawResult = cardDeck[randint];
+
+
+            return drawResult;
         }
 
         public void PickUpJewel()
