@@ -6,16 +6,19 @@
         static void Main(string[] args)
         {
 
-            SetupGame();
+            PlayGame();
             
         }
 
-        static void SetupGame()
+        static void PlayGame()
         {
             Game game = new Game();
             game.Start();
+            game.PlayRound();
 
         }
+
+
 
 
     }

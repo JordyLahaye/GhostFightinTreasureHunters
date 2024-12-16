@@ -31,11 +31,11 @@ namespace GhostFightinTreasureHunters
             //Logic
         }
 
-        public string DrawCard()
+        public string DrawCard() // FIX OUT OF RANGE ERROR
         {
             Random random = new Random();
             int lenghtList = cardDeck.Count;
-            int randint = random.Next(0, lenghtList+1); //Deck van de kaarten
+            int randint = random.Next(0, lenghtList-1); //Deck van de kaarten 
             string drawResult = cardDeck[randint];
 
 
@@ -105,7 +105,7 @@ namespace GhostFightinTreasureHunters
 
 
             }
-            Console.WriteLine($"You roll the {action} die and it lands on: {rollResult}!");
+            //Console.WriteLine($"You roll the {action} die and it lands on: {rollResult}!");
             return rollResult;
 
         }

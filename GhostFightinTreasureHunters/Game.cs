@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
@@ -140,42 +141,91 @@ namespace GhostFightinTreasureHunters
 
         public void PlayRound()
         {
-            //Logic
-            NextTurn();
+            while (!IsCompleted)
+            {
+                //Logic
+                NextTurn();
+                Move();
+                //if conditie klopt dan:
+                Attack();
+            
+
+            }
+            
+        }
+
+        public void Move()
+        {
             bool correctAnswer = false;
             Console.WriteLine($"{PlayerTurn.Name}, rol de dobbelsteen om te lopen (druk op 'Enter' om te rollen)");
-            string answer = Console.ReadLine();
-            while (correctAnswer = false)
+            while (true)
             {
-                if (answer == "")
+                string answer = Console.ReadLine();
+                if (string.IsNullOrEmpty(answer))
                 {
                     string rollResult = PlayerTurn.ThrowDie("move");
                     if (rollResult == "6")
                     {
                         Console.WriteLine($"Je hebt '{rollResult}' gerolt!");
+                        return;
 
                     }
                     else
                     {
                         Console.WriteLine($"Je hebt '{rollResult}' gerolt! Helaas moet je een kaart rapen");
-                        string cardResult = PlayerTurn.DrawCard()
+                        DrawCard();
+                        return;
                     }
 
-                    correctAnswer = true;
                 }
                 else
                 {
                     Console.WriteLine("Foute invoer, druk op 'Enter' om de dobbelsteen te rollen");
                 }
             }
-            correctAnswer = false; // Voor het volgende blok
-            
-            while (correctAnswer = false)
+        }
+
+        public void DrawCard()
+        {
+            Console.WriteLine($"{PlayerTurn.Name}, raap een kaart van de stapel (druk op 'Enter') ");
+            while (true)
             {
-                if (answer == "")
+                string answer = Console.ReadLine();
+                if (string.IsNullOrEmpty(answer))
                 {
-                    PlayerTurn.ThrowDie("attack");
-                    correctAnswer = true;
+                    string cardResult = PlayerTurn.DrawCard();
+                    if (cardResult == "a" || cardResult == "b" || cardResult == "c" || cardResult == "d" || cardResult == "e" || cardResult == "f" 
+                        || cardResult == "g" || cardResult == "h") 
+                    {
+                        Console.WriteLine($"Je trekt een kaart van de stapel en raapt: 'Geestkaart', Oh nee! Er komt een spook in kamer {cardResult}");
+                        return;
+
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Je trekt een kaart van de stapel en raapt:"); // Maak af!
+                        return;
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("Foute invoer, druk op 'Enter' om een kaart te rapen");
+                }
+            }
+        }
+
+        public void Attack()
+        {
+            while (true)
+            {
+                string answer = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(answer))
+                {
+                    string rollResult = PlayerTurn.ThrowDie("attack");
+                    Console.WriteLine($"Je dobbelsteen land op: '{rollResult}'!");
+                    return;
                 }
                 else
                 {
@@ -186,29 +236,14 @@ namespace GhostFightinTreasureHunters
 
         public void NextTurn()
         {
-            if(PlayerTurn == null) // Begint beurt, pak de eerste speler
+            if (PlayerTurn == null) // Eerste beurt
             {
                 PlayerTurn = Players[0];
             }
             else
             {
-                
-                if (PlayerTurn == Players[0])
-                {
-                    PlayerTurn = Players[1];
-                }
-                else if (PlayerTurn == Players[1])
-                {
-                    PlayerTurn = Players[2];
-                }
-                else if (PlayerTurn == Players[2])
-                {
-                    PlayerTurn = Players[3];
-                }
-                else
-                {
-                    PlayerTurn = Players[0];
-                }
+                int currentIndex = Players.IndexOf(PlayerTurn);
+                PlayerTurn = Players[(currentIndex + 1) % Players.Count]; // Ga oor de lijst
             }
         }
 
