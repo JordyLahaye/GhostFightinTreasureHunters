@@ -8,7 +8,7 @@ namespace GhostFightinTreasureHunters
 {
     public class Board
     {
-
+        private int Id { get; set; }
         public string TileIndexBoard { get; set; }
         public int CountHauntingMarker { get; set; }
 

@@ -8,10 +8,11 @@ namespace GhostFightinTreasureHunters
 {
     public class Player : Pawn
     {
-        
+        private int Id { get; set; }
         public string Name { get; set; }
         public string ColorHunter { get; set; }
         public bool HasJewel { get; set; }
+        private Dictionary<int, int> Position { get; set; }
 
         private List<string> cardDeck = new List<string>() {"a","b", "c", "d", "e", "f", "g", "h"}; // Bekijk kaartregels dit is een begin
         public Player(string name, string colorHunter) : base("player") //CreatePlayer

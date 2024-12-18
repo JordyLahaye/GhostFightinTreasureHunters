@@ -8,7 +8,7 @@ namespace GhostFightinTreasureHunters
 {
     public class Jewel
     {
-
-        public int Position { get; set; }
+        private int Id { get; set; }
+        private Dictionary<int, int> Position { get; set; }
     }
 }

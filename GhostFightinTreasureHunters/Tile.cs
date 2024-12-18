@@ -9,16 +9,18 @@ namespace GhostFightinTreasureHunters
 
     public class Tile
     {
+        private int Id { get; set; }
         public string Type { get; set; }
         public string RoomId { get; set; }
-
+        private Dictionary<int, int> Position { get; set; }
         public bool HasHauntingMarker { get; set; }
+
+        public bool HasJewel { get; set; }
 
         public List<Pawn> CountPlayers { get; set; }
 
         public List<Pawn> CountGhosts { get; set; } // OF INT en dan PLUS 1 per geest op de tile?
 
-        public bool HasJewel { get; set; }
 
 
         public void SpawnGhost()
