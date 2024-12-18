@@ -9,7 +9,7 @@ namespace GhostFightinTreasureHunters
     public class HauntingMarker : Pawn
     {
         private int Id { get; set; }
-        private Dictionary<int, int> Position { get; set; }
+        private Tile tile { get; set; } // tile of position (zelfde in DB houden)
         public HauntingMarker() : base("haunting marker") //Create HauntingMarker
         {
 

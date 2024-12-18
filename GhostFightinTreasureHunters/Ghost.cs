@@ -10,7 +10,7 @@ namespace GhostFightinTreasureHunters
     {
         private int Id { get; set; }
         public int AmountOfGhostInRoom { get; set; }
-        private Dictionary<int, int> Position { get; set; }
+        private Tile tile { get; set; } // tile of position (zelfde in DB houden)
 
         public Ghost() : base("ghost")
         {

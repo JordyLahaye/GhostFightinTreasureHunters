@@ -10,7 +10,7 @@ namespace GhostFightinTreasureHunters
     {
         private string Type { get; set; }
         private int Id { get; set; }
-        private Dictionary<int,int> Position { get; set; }
+        private Tile tile { get; set; } // tile of position (zelfde in DB houden)
 
         public Pawn(string type)
         {

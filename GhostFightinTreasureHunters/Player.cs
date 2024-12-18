@@ -12,7 +12,7 @@ namespace GhostFightinTreasureHunters
         public string Name { get; set; }
         public string ColorHunter { get; set; }
         public bool HasJewel { get; set; }
-        private Dictionary<int, int> Position { get; set; }
+        private Tile tile { get; set; } // tile of position (zelfde in DB houden)
 
         private List<string> cardDeck = new List<string>() {"a","b", "c", "d", "e", "f", "g", "h"}; // Bekijk kaartregels dit is een begin
         public Player(string name, string colorHunter) : base("player") //CreatePlayer
