@@ -14,7 +14,7 @@ namespace GhostFightinTreasureHunters
         public bool HasJewel { get; set; }
         private Tile tile { get; set; } // tile of position (zelfde in DB houden)
 
-        private List<string> cardDeck = new List<string>() {"a","b", "c", "d", "e", "f", "g", "h"}; // Bekijk kaartregels dit is een begin
+        private List<string> cardDeck = new List<string>() {"A","B", "C", "D", "E", "F", "G", "H"}; // Bekijk kaartregels dit is een begin
         public Player(string name, string colorHunter) : base("player") //CreatePlayer
         {
             Name = name;

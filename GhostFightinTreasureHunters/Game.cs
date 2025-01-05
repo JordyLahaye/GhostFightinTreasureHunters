@@ -35,20 +35,19 @@ namespace GhostFightinTreasureHunters
 
         public void Start()
         {
-            Console.WriteLine("Met hoeveel spelers zijn jullie? (Dit spel kan worden gespeeld met 2-4 spelers)");
-            string inputPlayerCount = Console.ReadLine();
+            Program program = new Program();
+            string inputPlayerCount = program.TextToUserInput("Met hoeveel spelers zijn jullie? (Dit spel kan worden gespeeld met 2-4 spelers)");
             if (int.TryParse(inputPlayerCount, out int playerCount))
             {
                 for (int i = 0; i < playerCount; i++)
                 {
-                    Console.WriteLine($"  {i + 1}:");
-                    string playerName = Console.ReadLine();
+                    string playerName = program.TextToUserInput($"Voer de naam in van speler {i + 1}:");
                     string colorHunter;
 
                     if (i == 3) // Als er met 4 man gespeelt word, de laatste die kiest (0,1,2,3) die heeft de overgebleven pion
                     {
                         string playerColor = availablePlayerPawns[0];
-                        Console.WriteLine($"{playerName}, jij krijgt de pion kleur: {playerColor}");
+                        program.TextToUser($"{playerName}, jij krijgt de pion kleur: {playerColor}");
                         availablePlayerPawns.Remove(playerColor);
 
                         Player player = new Player(playerName, playerColor);
@@ -57,21 +56,21 @@ namespace GhostFightinTreasureHunters
                     }
                     else
                     {
-                        Console.WriteLine($"{playerName}, uit de volgende pion kleuren kun je kiezen");
+                        program.TextToUser($"{playerName}, uit de volgende pion kleuren kun je kiezen");
 
                         int count = 1;
                         foreach (string color in availablePlayerPawns)
                         {
 
-                            Console.WriteLine($"{count} : {color}");
+                            program.TextToUser($"{count} : {color}");
                             count++;
                         }
 
-                        Console.WriteLine("Kies je pion kleur: (voer een nummer in)");
+                        program.TextToUser("Kies je pion kleur: (voer een nummer in)");
                         bool notCompleted = true; //Zorg ervoor dat je niet de hele StartGame reset moet doen als je één fout maakt
                         while (notCompleted)
                         {
-                            string inputColor = Console.ReadLine();
+                            string inputColor = program.UserInput();
                             string playerColor = "";
                             if (int.TryParse(inputColor, out int colorChoice) && colorChoice > 0 && colorChoice <= availablePlayerPawns.Count)
                             {
@@ -101,7 +100,7 @@ namespace GhostFightinTreasureHunters
                             }
                             else
                             {
-                                Console.WriteLine("Kies een geldig nummer!");
+                                program.TextToUser("Kies een geldig nummer!");
                             }
 
                         }
@@ -120,7 +119,7 @@ namespace GhostFightinTreasureHunters
             }
             else
             {
-                Console.WriteLine("Geen geldige invoer, voer een getal in");
+                program.TextToUser("Geen geldige invoer, voer een getal in");
                 Start(); // Opnieuw
             }
 
@@ -156,23 +155,24 @@ namespace GhostFightinTreasureHunters
 
         public void Move()
         {
+            Program program = new Program();
             bool correctAnswer = false;
-            Console.WriteLine($"{PlayerTurn.Name}, rol de dobbelsteen om te lopen (druk op 'Enter' om te rollen)");
+            program.TextToUser($"{PlayerTurn.Name}, rol de dobbelsteen om te lopen (druk op 'Enter' om te rollen)");
             while (true)
             {
-                string answer = Console.ReadLine();
+                string answer = program.UserInput();
                 if (string.IsNullOrEmpty(answer))
                 {
                     string rollResult = PlayerTurn.ThrowDie("move");
                     if (rollResult == "6")
                     {
-                        Console.WriteLine($"Je hebt '{rollResult}' gerolt!");
+                        program.TextToUser($"Je hebt '{rollResult}' gerolt!");
                         return;
 
                     }
                     else
                     {
-                        Console.WriteLine($"Je hebt '{rollResult}' gerolt! Helaas moet je een kaart rapen");
+                        program.TextToUser($"Je hebt '{rollResult}' gerolt! Helaas moet je een kaart rapen");
                         DrawCard();
                         return;
                     }
@@ -180,56 +180,58 @@ namespace GhostFightinTreasureHunters
                 }
                 else
                 {
-                    Console.WriteLine("Foute invoer, druk op 'Enter' om de dobbelsteen te rollen");
+                    program.TextToUser("Foute invoer, druk op 'Enter' om de dobbelsteen te rollen");
                 }
             }
         }
 
         public void DrawCard()
         {
-            Console.WriteLine($"{PlayerTurn.Name}, raap een kaart van de stapel (druk op 'Enter') ");
+            Program program = new Program();
+            program.TextToUser($"{PlayerTurn.Name}, raap een kaart van de stapel (druk op 'Enter') ");
             while (true)
             {
-                string answer = Console.ReadLine();
+                string answer = program.UserInput();
                 if (string.IsNullOrEmpty(answer))
                 {
                     string cardResult = PlayerTurn.DrawCard();
                     if (cardResult == "a" || cardResult == "b" || cardResult == "c" || cardResult == "d" || cardResult == "e" || cardResult == "f" 
                         || cardResult == "g" || cardResult == "h") 
                     {
-                        Console.WriteLine($"Je trekt een kaart van de stapel en raapt: 'Geestkaart', Oh nee! Er komt een spook in kamer {cardResult}");
+                        program.TextToUser($"Je trekt een kaart van de stapel en raapt: 'Geestkaart', Oh nee! Er komt een spook in kamer {cardResult}");
                         return;
 
                     }
                     else
                     {
-                        Console.WriteLine($"Je trekt een kaart van de stapel en raapt:"); // Maak af!
+                        program.TextToUser($"Je trekt een kaart van de stapel en raapt:"); // Maak af!
                         return;
                     }
 
                 }
                 else
                 {
-                    Console.WriteLine("Foute invoer, druk op 'Enter' om een kaart te rapen");
+                    program.TextToUser("Foute invoer, druk op 'Enter' om een kaart te rapen");
                 }
             }
         }
 
         public void Attack()
         {
+            Program program = new Program();
             while (true)
             {
-                string answer = Console.ReadLine();
+                string answer = program.UserInput();
 
                 if (string.IsNullOrEmpty(answer))
                 {
                     string rollResult = PlayerTurn.ThrowDie("attack");
-                    Console.WriteLine($"Je dobbelsteen land op: '{rollResult}'!");
+                    program.TextToUser($"Je dobbelsteen land op: '{rollResult}'!");
                     return;
                 }
                 else
                 {
-                    Console.WriteLine("Foute invoer, druk op 'Enter' om de dobbelsteen te rollen");
+                    program.TextToUser("Foute invoer, druk op 'Enter' om de dobbelsteen te rollen");
                 }
             }
         }

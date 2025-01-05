@@ -18,6 +18,24 @@
 
         }
 
+        public string TextToUserInput(string text)
+        {
+            Console.WriteLine(text);
+            string answer = Console.ReadLine();
+            return answer;
+        }
+
+        public void TextToUser(string text)
+        {
+            Console.WriteLine(text);
+        }
+
+        public string UserInput()
+        {
+            string answer = Console.ReadLine();
+            return answer;
+        }
+
 
 
 

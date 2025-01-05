@@ -6,16 +6,12 @@ using System.Threading.Tasks;
 
 namespace GhostFightinTreasureHunters
 {
-    public class Carddeck
+    public class CardDeck
     {
 
         public List<string> ListOfCards { get; set; } = new List<string>();
 
-        public void ShuffleCards()
-        {
-
-        }
-        public void DivideCards()
+        public void Shuffle()
         {
 
         }
