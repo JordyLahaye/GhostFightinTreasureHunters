@@ -41,7 +41,7 @@ namespace GhostFightinTreasureHunters
             {
                 for (int i = 0; i < playerCount; i++)
                 {
-                    Console.WriteLine($"Voer de naam in van speler {i + 1}:");
+                    Console.WriteLine($"  {i + 1}:");
                     string playerName = Console.ReadLine();
                     string colorHunter;
 
