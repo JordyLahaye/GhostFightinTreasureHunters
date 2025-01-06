@@ -8,7 +8,6 @@ namespace GhostFightinTreasureHunters
 {
     public class Player : Pawn
     {
-        private int Id { get; set; }
         public string Name { get; set; }
         public string ColorHunter { get; set; }
         public bool HasJewel { get; set; }
@@ -24,12 +23,45 @@ namespace GhostFightinTreasureHunters
 
         public void Move(Tile tile)
         {
-            //Logic
+            string rollResult = "";
+            Random random = new Random();
+            int randint = random.Next(1, 7); // 1 - 6
+            switch (randint)
+            {
+                case 1:
+                    rollResult = "1";
+                    break;
+                case 2:
+                    rollResult = "2";
+                    break;
+                case 3:
+                    rollResult = "3";
+                    break;
+                case 4:
+                    rollResult = "4";
+                    break;
+                case 5:
+                    rollResult = "5";
+                    break;
+                case 6:
+                    rollResult = "6";
+                    break;
+            }
         }
 
         public void Attack()
         {
-            //Logic
+            string rollResult = "";
+            Random random = new Random();
+            int randint = random.Next(0, 2); //0 - 1
+            if (randint == 0)
+            {
+                rollResult = "Ghost";
+            }
+            else
+            {
+                rollResult = "Haunting Marker";
+            }
         }
 
         public string DrawCard() // FIX OUT OF RANGE ERROR

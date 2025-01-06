@@ -11,11 +11,13 @@ namespace GhostFightinTreasureHunters
 {
     public class Game
     {
-        public int Id { get; set; } //DB bepaalt
         public DateTime StartDate { get; private set; } // Eenmalig aanmaken
         public DateTime LastPlayedDate { get; set; }
 
         public bool IsCompleted { get; set; }
+
+        public int PlayerCount { get; set; }
+        public int CollectedJewels { get; set; }
 
         public List<Player> Players { get; set; } = new List<Player>();
 
@@ -37,9 +39,9 @@ namespace GhostFightinTreasureHunters
         {
             Program program = new Program();
             string inputPlayerCount = program.TextToUserInput("Met hoeveel spelers zijn jullie? (Dit spel kan worden gespeeld met 2-4 spelers)");
-            if (int.TryParse(inputPlayerCount, out int playerCount))
+            if (int.TryParse(inputPlayerCount, out int PlayerCount))
             {
-                for (int i = 0; i < playerCount; i++)
+                for (int i = 0; i < PlayerCount; i++)
                 {
                     string playerName = program.TextToUserInput($"Voer de naam in van speler {i + 1}:");
                     string colorHunter;

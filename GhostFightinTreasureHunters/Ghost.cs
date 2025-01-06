@@ -8,7 +8,6 @@ namespace GhostFightinTreasureHunters
 {
     public class Ghost : Pawn
     {
-        private int Id { get; set; }
         private Tile tile { get; set; } // tile of position (zelfde in DB houden)
 
         public Ghost() : base("ghost")

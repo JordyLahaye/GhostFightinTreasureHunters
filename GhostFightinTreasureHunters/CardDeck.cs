@@ -10,6 +10,7 @@ namespace GhostFightinTreasureHunters
     {
 
         public List<string> ListOfCards { get; set; } = new List<string>();
+        public List<string> ListOfCurrentCards { get; set; } = new List<string>();
 
         public void Shuffle()
         {

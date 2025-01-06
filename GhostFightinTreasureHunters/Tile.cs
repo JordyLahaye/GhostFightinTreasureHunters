@@ -9,10 +9,8 @@ namespace GhostFightinTreasureHunters
 
     public class Tile
     {
-        private int Id { get; set; }
         public string Type { get; set; }
         public string RoomId { get; set; }
-        private Tile tile {  get; set; } // fix dit voor bord
         public bool HasHauntingMarker { get; set; }
 
         public bool HasJewel { get; set; }
