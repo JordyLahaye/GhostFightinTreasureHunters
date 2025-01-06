@@ -66,7 +66,6 @@ namespace GhostFightinTreasureHunters
                             count++;
                         }
 
-                        program.TextToUser("Kies je pion kleur: (voer een nummer in)");
                         bool notCompleted = true; //Zorg ervoor dat je niet de hele StartGame reset moet doen als je één fout maakt
                         while (notCompleted)
                         {
