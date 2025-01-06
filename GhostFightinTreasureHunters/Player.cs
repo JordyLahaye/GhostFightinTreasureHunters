@@ -13,7 +13,6 @@ namespace GhostFightinTreasureHunters
         public bool HasJewel { get; set; }
         private Tile tile { get; set; } // tile of position (zelfde in DB houden)
 
-        private List<string> cardDeck = new List<string>() {"A","B", "C", "D", "E", "F", "G", "H"}; // Bekijk kaartregels dit is een begin
         public Player(string name, string colorHunter) : base("player") //CreatePlayer
         {
             Name = name;
@@ -66,13 +65,14 @@ namespace GhostFightinTreasureHunters
 
         public string DrawCard() // FIX OUT OF RANGE ERROR
         {
-            Random random = new Random();
-            int lenghtList = cardDeck.Count;
-            int randint = random.Next(0, lenghtList-1); //Deck van de kaarten 
-            string drawResult = cardDeck[randint];
+            //Random random = new Random();
+            //int lenghtList = cardDeck.Count;
+            //int randint = random.Next(0, lenghtList - 1); //Deck van de kaarten 
+            //string drawResult = cardDeck[randint];
 
 
-            return drawResult;
+            //return drawResult;
+            return "logic";
         }
 
         public void PickUpJewel()
