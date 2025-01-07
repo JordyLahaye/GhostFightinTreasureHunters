@@ -52,7 +52,7 @@ namespace GhostFightinTreasureHunters
         {
             string rollResult = "";
             Random random = new Random();
-            int randint = random.Next(0, 2); //0 - 1
+            int randint = random.Next(0, 2); //0 - 1 Omdat er 3 ghost kanten zijn en 3 haunting marker kanten op een dobbelsteen
             if (randint == 0)
             {
                 rollResult = "Ghost";
@@ -63,17 +63,6 @@ namespace GhostFightinTreasureHunters
             }
         }
 
-        public string DrawCard() // FIX OUT OF RANGE ERROR
-        {
-            //Random random = new Random();
-            //int lenghtList = cardDeck.Count;
-            //int randint = random.Next(0, lenghtList - 1); //Deck van de kaarten 
-            //string drawResult = cardDeck[randint];
-
-
-            //return drawResult;
-            return "logic";
-        }
 
         public void PickUpJewel()
         {

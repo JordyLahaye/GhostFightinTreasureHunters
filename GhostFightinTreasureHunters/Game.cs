@@ -39,8 +39,9 @@ namespace GhostFightinTreasureHunters
         {
             Program program = new Program();
             string inputPlayerCount = program.TextToUserInput("Met hoeveel spelers zijn jullie? (Dit spel kan worden gespeeld met 2-4 spelers)");
-            if (int.TryParse(inputPlayerCount, out int PlayerCount))
+            if (int.TryParse(inputPlayerCount, out int PlayerCount) && PlayerCount >= 2 && PlayerCount <= 4)
             {
+                
                 for (int i = 0; i < PlayerCount; i++)
                 {
                     string playerName = program.TextToUserInput($"Voer de naam in van speler {i + 1}:");
@@ -120,7 +121,7 @@ namespace GhostFightinTreasureHunters
             }
             else
             {
-                program.TextToUser("Geen geldige invoer, voer een getal in");
+                program.TextToUser("Kies een nummer tussen 2 en 4!");
                 Start(); // Opnieuw
             }
 
