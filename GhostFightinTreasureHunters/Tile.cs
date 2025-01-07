@@ -12,7 +12,7 @@ namespace GhostFightinTreasureHunters
         public string Type { get; set; }
         public string RoomId { get; set; }
         public bool HasHauntingMarker { get; set; }
-
+        private int gameId { get; set; }
         public bool HasJewel { get; set; }
 
         public List<Pawn> CountPlayers { get; set; }

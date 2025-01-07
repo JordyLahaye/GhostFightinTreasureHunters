@@ -9,7 +9,8 @@ namespace GhostFightinTreasureHunters
     public abstract class Pawn
     {
         private string Type { get; set; }
-        private Tile tile { get; set; } // tile of position (zelfde in DB houden)
+        private Tile tileId { get; set; } // tile of position (zelfde in DB houden)
+        private int gameId { get; set; }
 
         public Pawn(string type)
         {
