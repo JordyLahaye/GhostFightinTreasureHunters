@@ -63,17 +63,6 @@ namespace GhostFightinTreasureHunters
             }
         }
 
-        public string DrawCard() // FIX OUT OF RANGE ERROR
-        {
-            //Random random = new Random();
-            //int lenghtList = cardDeck.Count;
-            //int randint = random.Next(0, lenghtList - 1); //Deck van de kaarten 
-            //string drawResult = cardDeck[randint];
-
-
-            //return drawResult;
-            return "logic";
-        }
 
         public void PickUpJewel()
         {
