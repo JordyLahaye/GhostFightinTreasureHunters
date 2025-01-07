@@ -11,6 +11,7 @@ namespace GhostFightinTreasureHunters
 
         public List<string> ListOfCards { get; set; } = new List<string>();
         public List<string> RemainingCards { get; set; } = new List<string>();
+        private int gameId { get; set; }
 
         public void Shuffle()
         {
