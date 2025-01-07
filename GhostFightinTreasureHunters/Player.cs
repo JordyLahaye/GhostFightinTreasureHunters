@@ -52,7 +52,7 @@ namespace GhostFightinTreasureHunters
         {
             string rollResult = "";
             Random random = new Random();
-            int randint = random.Next(0, 2); //0 - 1
+            int randint = random.Next(0, 2); //0 - 1 Omdat er 3 ghost kanten zijn en 3 haunting marker kanten op een dobbelsteen
             if (randint == 0)
             {
                 rollResult = "Ghost";
