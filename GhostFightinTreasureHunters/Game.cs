@@ -196,7 +196,8 @@ namespace GhostFightinTreasureHunters
                 string answer = program.UserInput();
                 if (string.IsNullOrEmpty(answer))
                 {
-                    string cardResult = PlayerTurn.DrawCard();
+                    Carddeck deck = new Carddeck();
+                    string cardResult = deck.GrabCard();
                     if (cardResult == "a" || cardResult == "b" || cardResult == "c" || cardResult == "d" || cardResult == "e" || cardResult == "f" 
                         || cardResult == "g" || cardResult == "h") 
                     {

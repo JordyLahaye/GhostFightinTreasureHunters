@@ -5,7 +5,7 @@
         private static List<Player> Players = new List<Player>(); //Note: static is alleen aanroepbaar binnen de klasse Program
         static void Main(string[] args)
         {
-            CardDeck cd = new CardDeck();
+            Carddeck cd = new Carddeck();
             cd.Shuffle();
             PlayGame();
             
@@ -15,6 +15,7 @@
         {
             Game game = new Game();
             game.Start();
+            Console.WriteLine("Het spel is opgezet en jullie kunnen nu spelen!");
             game.PlayRound();
 
         }

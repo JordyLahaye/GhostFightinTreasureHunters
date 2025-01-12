@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GhostFightinTreasureHunters
 {
-    public class CardDeck
+    public class Carddeck
     {
 
         public List<string> ListOfCards { get; set; } = new List<string>() {"A","B","C","D","E"};
