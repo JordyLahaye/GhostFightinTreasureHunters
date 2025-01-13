@@ -11,15 +11,23 @@ namespace GhostFightinTreasureHunters
     {
         public string Type { get; set; }
         public string RoomId { get; set; }
-        public bool HasHauntingMarker { get; set; }
-        private int gameId { get; set; }
+        public bool HasHauntingMarker { get; set; } = false;
+        private int GameId { get; set; }
         public bool HasJewel { get; set; }
 
-        public List<Pawn> CountPlayers { get; set; }
+        public int CountPlayers { get; set; } = 0;
 
-        public List<Pawn> CountGhosts { get; set; } // OF INT en dan PLUS 1 per geest op de tile?
+        public int CountGhosts { get; set; } // OF INT en dan PLUS 1 per geest op de tile?
 
+        public Tile(string type, string roomId, int gameId, bool hasJewel, int countGhosts)
+        {
+            Type = type;
+            RoomId = roomId;
+            GameId = gameId;
+            HasJewel = hasJewel;
+            CountGhosts = countGhosts;
 
+        }
 
         public void SpawnGhost()
         {

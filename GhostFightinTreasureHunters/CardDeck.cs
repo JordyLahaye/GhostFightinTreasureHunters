@@ -20,10 +20,20 @@ namespace GhostFightinTreasureHunters
             //Shuffle listofcards
         }
 
-        public string GrabCard()
+        public string GrabCard() //Pak de 'bovenste' kaart
         {
+            string card = RemainingCards.Last(); // Pak de "bovenste" van de stapel
+            RemainingCards.Remove(card);
+            return card;
+        }
 
-            return RemainingCards.Last();
+        public List<string> GetListOfCards() //Getter
+        {
+            return ListOfCards;
+        }
+        public List<string> GetRemainingCards() //Getter
+        {
+            return RemainingCards;
         }
     }
 }
