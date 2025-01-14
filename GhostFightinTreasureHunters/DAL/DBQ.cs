@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 
 namespace GhostFightinTreasureHunters.DAL
 {
@@ -8,7 +6,7 @@ namespace GhostFightinTreasureHunters.DAL
     {
 
         private string connectionString = "Data Source=.;Initial Catalog=GFTH;Integrated Security=True;Trust Server Certificate=True";
-        
+
 
         public void CreateGame(List<Player> players, Player playerTurn, int jewels, List<Tile> tiles, List<string> cards)
         {
@@ -16,6 +14,12 @@ namespace GhostFightinTreasureHunters.DAL
             int collectedJewels = jewels;
             DateTime startDate = DateTime.Now;
             string fileName = "Game_" + startDate.ToString("yyyyMMdd_HHmmss");
+
+            string cardString = "";
+            foreach (var card in cards)
+            {
+                cardString += card;
+            }
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -64,16 +68,19 @@ namespace GhostFightinTreasureHunters.DAL
 
                     // Insert each tile into the Tile table
                     string insertTileQuery = @"
-                        INSERT INTO Tile (gameId, position, tileType)
-                        VALUES (@gameId, @position, @tileType)";
+                        INSERT INTO Tile (gameId, type, roomId, countPlayers, countGhosts, hasJewel)
+                        VALUES (@gameId, @type, @roomId, @countPlayers, @countGhosts, @hasJewel)";
 
                     foreach (var tile in tiles)
                     {
                         using (SqlCommand command = new SqlCommand(insertTileQuery, connection, transaction))
                         {
                             command.Parameters.AddWithValue("@gameId", gameId);
-                            command.Parameters.AddWithValue("@position", tile.Position);
-                            command.Parameters.AddWithValue("@tileType", tile.TileType);
+                            command.Parameters.AddWithValue("@type", tile.Type);
+                            command.Parameters.AddWithValue("@roomId", tile.RoomId);
+                            command.Parameters.AddWithValue("@countPlayers", tile.CountPlayers);
+                            command.Parameters.AddWithValue("@countGhosts", tile.CountGhosts);
+                            command.Parameters.AddWithValue("@hasJewel", tile.HasJewel);
 
                             command.ExecuteNonQuery();
                         }
@@ -81,24 +88,28 @@ namespace GhostFightinTreasureHunters.DAL
 
                     // Insert each card into the CardDeck table
                     string insertCardQuery = @"
-                        INSERT INTO CardDeck (gameId, cardName, cardType)
-                        VALUES (@gameId, @cardName, @cardType)";
+                        INSERT INTO CardDeck (gameId, listOfCards, remainingCards)
+                        VALUES (@gameId, @listOfCards, @remainingCards)";
 
-                    foreach (var card in cards)
+
+                    using (SqlCommand command = new SqlCommand(insertCardQuery, connection, transaction))
                     {
-                        using (SqlCommand command = new SqlCommand(insertCardQuery, connection, transaction))
-                        {
-                            command.Parameters.AddWithValue("@gameId", gameId);
-                            command.Parameters.AddWithValue("@cardName", card.CardName);
-                            command.Parameters.AddWithValue("@cardType", card.CardType);
+                        command.Parameters.AddWithValue("@gameId", gameId);
+                        command.Parameters.AddWithValue("@listOfCards", cardString);
+                        command.Parameters.AddWithValue("@remainingCards", cardString); // Nieuwe game dus de overgebleven kaarten zijn dezelfde kaarten als start kaarten
 
-                            command.ExecuteNonQuery();
-                        }
+                        command.ExecuteNonQuery();
+
+
+
+
+
+
+
+                        // Commit the transaction
+                        transaction.Commit();
+                        Console.WriteLine("Game, players, tiles, and cards added successfully!");
                     }
-
-                    // Commit the transaction
-                    transaction.Commit();
-                    Console.WriteLine("Game, players, tiles, and cards added successfully!");
                 }
                 catch (Exception ex)
                 {
