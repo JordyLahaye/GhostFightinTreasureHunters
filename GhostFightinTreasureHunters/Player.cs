@@ -8,6 +8,7 @@ namespace GhostFightinTreasureHunters
 {
     public class Player : Pawn
     {
+        public int Id { get; set; } //////////////////////////////////////////////////////////////////// ALLE DIAGRAMMEN
         public string Name { get; set; }
         public string ColorHunter { get; set; }
         public bool HasJewel { get; set; }

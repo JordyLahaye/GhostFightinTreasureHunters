@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GhostFightinTreasureHunters.DAL;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
@@ -11,13 +12,15 @@ namespace GhostFightinTreasureHunters
 {
     public class Game
     {
+        public int Id { get; set; } //////////////////////////////////////////////////////////////////// ALLE DIAGRAMMEN
         public DateTime StartDate { get; private set; } // Eenmalig aanmaken
         public DateTime LastPlayedDate { get; set; }
 
         public bool IsCompleted { get; set; }
+        public string fileName { get; set; }
 
         public int PlayerCount { get; set; }
-        public int CollectedJewels { get; set; }
+        public int CollectedJewels { get; set; } = 0;
 
         public List<Player> Players { get; set; } = new List<Player>();
 
@@ -33,6 +36,26 @@ namespace GhostFightinTreasureHunters
         public Game(DateTime startDate) // Bestaand spel
         {
             StartDate = startDate;
+        }
+
+        public void dbtest()
+        {
+            Player player1 = new Player("jordy", "yellow");
+            Player player2 = new Player("miel", "cyan");
+            Player player3 = new Player("roel", "green");
+            Player player4 = new Player("jan", "red");
+            Players.Add(player1);
+            Players.Add(player2);
+            Players.Add(player3);
+            Players.Add(player4);
+            
+            DBQ dBQ = new DBQ();
+            Board board = new Board();
+            List<Tile> tiles = board.GetTiles();
+            Carddeck cd = new Carddeck();
+            List<string> cards = cd.GetListOfCards();
+
+            dBQ.CreateGame(Players, player1, CollectedJewels, tiles, cards);
         }
 
         public void Start()
@@ -196,7 +219,8 @@ namespace GhostFightinTreasureHunters
                 string answer = program.UserInput();
                 if (string.IsNullOrEmpty(answer))
                 {
-                    string cardResult = PlayerTurn.DrawCard();
+                    Carddeck deck = new Carddeck();
+                    string cardResult = deck.GrabCard();
                     if (cardResult == "a" || cardResult == "b" || cardResult == "c" || cardResult == "d" || cardResult == "e" || cardResult == "f" 
                         || cardResult == "g" || cardResult == "h") 
                     {
@@ -254,6 +278,11 @@ namespace GhostFightinTreasureHunters
         public void SaveGame()
         {
 
+        }
+
+        public int getGameId()
+        {
+            return Id;
         }
 
     }
