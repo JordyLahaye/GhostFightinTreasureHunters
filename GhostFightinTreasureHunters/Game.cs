@@ -38,25 +38,6 @@ namespace GhostFightinTreasureHunters
             StartDate = startDate;
         }
 
-        public void dbtest()
-        {
-            Player player1 = new Player("jordy", "yellow");
-            Player player2 = new Player("miel", "cyan");
-            Player player3 = new Player("roel", "green");
-            Player player4 = new Player("jan", "red");
-            Players.Add(player1);
-            Players.Add(player2);
-            Players.Add(player3);
-            Players.Add(player4);
-            
-            DBQ dBQ = new DBQ();
-            Board board = new Board();
-            List<Tile> tiles = board.GetTiles();
-            Carddeck cd = new Carddeck();
-            List<string> cards = cd.GetListOfCards();
-
-            dBQ.CreateGame(Players, player1, CollectedJewels, tiles, cards);
-        }
 
         public void Start()
         {
@@ -147,6 +128,19 @@ namespace GhostFightinTreasureHunters
                 program.TextToUser("Kies een nummer tussen 2 en 4!");
                 Start(); // Opnieuw
             }
+            PlayerTurn = Players[0];
+            Carddeck carddeck = new Carddeck();
+            Board board = Program.GetBoard();
+            List <Tile> tiles = board.GetTiles();
+            foreach (Tile tile in tiles)
+            {
+                Console.WriteLine(tile.RoomId);
+
+            }
+
+            List<string> cards = carddeck.ListOfCards;
+            DBQ dBQ = new DBQ();
+            dBQ.CreateGame(Players, PlayerTurn, tiles, cards);
 
 
         

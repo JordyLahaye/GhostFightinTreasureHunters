@@ -1,4 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
+using System.Diagnostics.Metrics;
+using System.Text;
 
 namespace GhostFightinTreasureHunters.DAL
 {
@@ -8,12 +10,12 @@ namespace GhostFightinTreasureHunters.DAL
         private string connectionString = "Data Source=.;Initial Catalog=GFTH;Integrated Security=True;Trust Server Certificate=True";
 
 
-        public void CreateGame(List<Player> players, Player playerTurn, int jewels, List<Tile> tiles, List<string> cards)
+        public void CreateGame(List<Player> players, Player playerTurn, List<Tile> tiles, List<string> cards)
         {
             int gameId;
-            int collectedJewels = jewels;
+            int collectedJewels = 0;
             DateTime startDate = DateTime.Now;
-            string fileName = "Game_" + startDate.ToString("yyyyMMdd_HHmmss");
+            string fileName = "Spel_" + startDate.ToString("dd/MM/yyyy");
 
             string cardString = "";
             foreach (var card in cards)
@@ -77,7 +79,7 @@ namespace GhostFightinTreasureHunters.DAL
                         {
                             command.Parameters.AddWithValue("@gameId", gameId);
                             command.Parameters.AddWithValue("@type", tile.Type);
-                            command.Parameters.AddWithValue("@roomId", tile.RoomId);
+                            command.Parameters.AddWithValue("@roomId", tile.RoomId ?? (object)DBNull.Value);
                             command.Parameters.AddWithValue("@countPlayers", tile.CountPlayers);
                             command.Parameters.AddWithValue("@countGhosts", tile.CountGhosts);
                             command.Parameters.AddWithValue("@hasJewel", tile.HasJewel);
@@ -101,14 +103,8 @@ namespace GhostFightinTreasureHunters.DAL
                         command.ExecuteNonQuery();
 
 
-
-
-
-
-
                         // Commit the transaction
                         transaction.Commit();
-                        Console.WriteLine("Game, players, tiles, and cards added successfully!");
                     }
                 }
                 catch (Exception ex)
@@ -120,7 +116,34 @@ namespace GhostFightinTreasureHunters.DAL
             }
         }
 
+        public string GetAllGames()
+        {
+            string gameList = "";
+            int count = 1;
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string selectQuery = @"
+                    SELECT fileName
+                    FROM Game";
+
+                using (SqlCommand command = new SqlCommand(selectQuery, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            gameList += $"{count}: "+ reader["fileName"].ToString()+"\n";
+                            count++;
+                        }
+                    }
+                }
+            }
+
+            return gameList.ToString();
+        }
     }
 
 

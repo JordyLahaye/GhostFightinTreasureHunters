@@ -29,6 +29,8 @@ namespace GhostFightinTreasureHunters
 
         }
 
+
+
         public void SpawnGhost()
         {
             //Logic

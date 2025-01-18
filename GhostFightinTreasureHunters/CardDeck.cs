@@ -22,6 +22,10 @@ namespace GhostFightinTreasureHunters
 
         public string GrabCard() //Pak de 'bovenste' kaart
         {
+            if(RemainingCards.Count < 1)
+            {
+                Shuffle();
+            }
             string card = RemainingCards.Last(); // Pak de "bovenste" van de stapel
             RemainingCards.Remove(card);
             return card;
