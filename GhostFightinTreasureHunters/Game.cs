@@ -269,7 +269,7 @@ namespace GhostFightinTreasureHunters
             }
         }
 
-        public void SaveGame()
+        public void Save()
         {
 
         }
