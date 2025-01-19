@@ -128,16 +128,11 @@ namespace GhostFightinTreasureHunters
                 program.TextToUser("Kies een nummer tussen 2 en 4!");
                 Start(); // Opnieuw
             }
-            PlayerTurn = Players[0];
+            PlayerTurn = Players.Last();
             Carddeck carddeck = new Carddeck();
             Board board = Program.GetBoard();
             List <Tile> tiles = board.GetTiles();
-            foreach (Tile tile in tiles)
-            {
-                Console.WriteLine(tile.RoomId);
-
-            }
-
+            
             List<string> cards = carddeck.ListOfCards;
             DBQ dBQ = new DBQ();
             dBQ.CreateGame(Players, PlayerTurn, tiles, cards);
